@@ -1,0 +1,29 @@
+<div class="login-container">
+    <div class="login-panel">
+      <h2>Login</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="p-field">
+          <label for="username">Usuário</label>
+          <input id="username" formControlName="username" type="text" pInputText />
+          <span *ngIf="verifyFields('username') && submitted" class="p-error">
+            Campo precisa ser preenchido
+          </span>
+        </div>
+        <div class="p-field">
+          <label for="password">Senha</label>
+          <input id="password" formControlName="password" type="password" pPassword />
+          <span *ngIf="verifyFields('password') && submitted" class="p-error">
+            Campo precisa ser preenchido
+          </span>
+        </div>
+        <button type="submit" pButton label="Entrar" icon="pi pi-sign-in"></button>
+      </form>
+    </div>
+  </div>
+  
+  <p-dialog header="Erro de Login" [(visible)]="displayErrorDialog" [modal]="true" [closable]="true" [dismissableMask]="true">
+    <p>Usuário ou senha inválidos. Tente novamente.</p>
+    <p-footer>
+      <button type="button" pButton label="OK" icon="pi pi-check" (click)="closeDialog()"></button>
+    </p-footer>
+  </p-dialog>
